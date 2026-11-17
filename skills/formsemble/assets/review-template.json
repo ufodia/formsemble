@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "scope": "Replace with the specific UI, states, and change being reviewed.",
+  "artifact": {
+    "label": "Replace with the reviewed implementation or design version.",
+    "files": []
+  },
+  "checks": [
+    {
+      "id": "intent",
+      "status": "not_tested",
+      "method": "none",
+      "expected": "The UI supports the documented user, task, and intended outcome.",
+      "observed": "",
+      "reason": "Product intent has not yet been compared with this artifact.",
+      "evidence": []
+    },
+    {
+      "id": "task",
+      "status": "not_tested",
+      "method": "none",
+      "expected": "The scoped primary task can be completed and recovered from relevant errors.",
+      "observed": "",
+      "reason": "The scoped task has not yet been exercised.",
+      "evidence": []
+    },
+    {
+      "id": "visual",
+      "status": "not_tested",
+      "method": "none",
+      "expected": "The rendered artifact follows the chosen hierarchy and visual direction.",
+      "observed": "",
+      "reason": "The current rendered artifact has not yet been visually inspected.",
+      "evidence": []
+    },
+    {
+      "id": "accessibility",
+      "status": "not_tested",
+      "method": "none",
+      "expected": "The explicitly scoped accessibility checks pass for the changed UI.",
+      "observed": "",
+      "reason": "Specific accessibility checks and their evidence have not yet been recorded.",
+      "evidence": []
+    },
+    {
+      "id": "responsiveness",
+      "status": "not_tested",
+      "method": "none",
+      "expected": "The scoped UI remains usable at the relevant sizes and content extremes.",
+      "observed": "",
+      "reason": "Relevant sizes and content extremes have not yet been inspected.",
+      "evidence": []
+    },
+    {
+      "id": "preservation",
+      "status": "not_tested",
+      "method": "none",
+      "expected": "The documented behavior, data, and design constraints remain intact.",
+      "observed": "",
+      "reason": "The preserved constraints have not yet been checked against this artifact.",
+      "evidence": []
+    }
+  ],
+  "findings": []
+}
