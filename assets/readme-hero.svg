@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="720" viewBox="0 0 1440 720" role="img" aria-labelledby="title desc">
+  <title id="title">Formsemble: make the interface make sense</title>
+  <desc id="desc">A product-aware design loop connects the user's need to a product model, screen promise, working flow, and visible evidence.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#10192a"/>
+      <stop offset="0.55" stop-color="#111526"/>
+      <stop offset="1" stop-color="#201a32"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c9f77a" stop-opacity=".19"/>
+      <stop offset="1" stop-color="#64e5c3" stop-opacity=".02"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#d5f27b"/>
+      <stop offset="1" stop-color="#68e4bf"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#d8e7ff" stroke-opacity=".055" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1440" height="720" rx="30" fill="url(#bg)"/>
+  <rect width="1440" height="720" rx="30" fill="url(#grid)"/>
+  <ellipse cx="1260" cy="70" rx="410" ry="300" fill="url(#glow)"/>
+  <path d="M0 594C245 528 355 664 562 622s323-127 468-75 251 67 410 16v157H0Z" fill="#0b1120" fill-opacity=".55"/>
+
+  <g font-family="Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif">
+    <rect x="72" y="70" width="250" height="36" rx="18" fill="#d5f27b" fill-opacity=".10" stroke="#d5f27b" stroke-opacity=".38"/>
+    <circle cx="92" cy="88" r="5" fill="#d5f27b"/>
+    <text x="108" y="94" fill="#d9f28f" font-size="12" font-weight="700" letter-spacing="1.5">A PRODUCT-AWARE DESIGN STUDIO</text>
+
+    <text x="70" y="217" fill="#f6f3ec" font-size="76" font-weight="720" letter-spacing="-3.8">Make the interface</text>
+    <text x="70" y="304" fill="#f6f3ec" font-size="76" font-weight="720" letter-spacing="-3.8">make sense.</text>
+    <path d="M74 333h248" stroke="url(#accent)" stroke-width="5" stroke-linecap="round"/>
+    <text x="72" y="390" fill="#c4cbda" font-size="22" font-weight="400">Trace user intent into clear screens,</text>
+    <text x="72" y="424" fill="#c4cbda" font-size="22" font-weight="400">working behavior and inspectable evidence.</text>
+
+    <g transform="translate(72 490)">
+      <circle cx="12" cy="12" r="12" fill="#d5f27b" fill-opacity=".15"/>
+      <path d="m7 12 3.3 3.3L17.5 8" fill="none" stroke="#d5f27b" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <text x="34" y="17" fill="#e0e4ec" font-size="14" font-weight="550">Keep product meaning and real actions intact</text>
+    </g>
+    <g transform="translate(72 532)">
+      <circle cx="12" cy="12" r="12" fill="#68e4bf" fill-opacity=".13"/>
+      <path d="M8 12h8M12 8v8" stroke="#68e4bf" stroke-linecap="round" stroke-width="2"/>
+      <text x="34" y="17" fill="#e0e4ec" font-size="14" font-weight="550">Scale from one fix to a complete flow</text>
+    </g>
+    <text x="72" y="644" fill="#8c95aa" font-size="13" font-weight="600" letter-spacing="1.5">FORMSEMBLE  /  OPEN SKILL  /  MIT</text>
+
+    <text x="778" y="94" fill="#9ba5ba" font-size="12" font-weight="700" letter-spacing="2">ONE THREAD FROM NEED TO PROOF</text>
+    <path d="M810 157v421" stroke="#88a2a8" stroke-opacity=".38" stroke-width="2" stroke-dasharray="4 8"/>
+    <path d="M810 202v31m0 93v31m0 93v31m0 93v31" stroke="url(#accent)" stroke-width="2.5"/>
+
+    <g>
+      <rect x="850" y="132" width="510" height="88" rx="17" fill="#f5f4f0" fill-opacity=".055" stroke="#d6dced" stroke-opacity=".18"/>
+      <circle cx="810" cy="176" r="19" fill="#172538" stroke="#d5f27b" stroke-width="2"/>
+      <text x="810" y="181" fill="#d5f27b" font-size="12" font-weight="750" text-anchor="middle">01</text>
+      <text x="882" y="168" fill="#d5f27b" font-size="11" font-weight="700" letter-spacing="1.7">UNDERSTAND</text>
+      <text x="882" y="196" fill="#f5f4f0" font-size="20" font-weight="650">Person · job · product truth</text>
+      <path d="M1308 166h22m-8-8 8 8-8 8" fill="none" stroke="#929db1" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g>
+      <rect x="850" y="264" width="510" height="88" rx="17" fill="#f5f4f0" fill-opacity=".055" stroke="#d6dced" stroke-opacity=".18"/>
+      <circle cx="810" cy="308" r="19" fill="#172538" stroke="#b1eb8c" stroke-width="2"/>
+      <text x="810" y="313" fill="#b1eb8c" font-size="12" font-weight="750" text-anchor="middle">02</text>
+      <text x="882" y="300" fill="#b1eb8c" font-size="11" font-weight="700" letter-spacing="1.7">DIRECT</text>
+      <text x="882" y="328" fill="#f5f4f0" font-size="20" font-weight="650">Need → affordance → outcome</text>
+      <path d="M1308 298h22m-8-8 8 8-8 8" fill="none" stroke="#929db1" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g>
+      <rect x="850" y="396" width="510" height="88" rx="17" fill="#f5f4f0" fill-opacity=".055" stroke="#d6dced" stroke-opacity=".18"/>
+      <circle cx="810" cy="440" r="19" fill="#172538" stroke="#83e5b1" stroke-width="2"/>
+      <text x="810" y="445" fill="#83e5b1" font-size="12" font-weight="750" text-anchor="middle">03</text>
+      <text x="882" y="432" fill="#83e5b1" font-size="11" font-weight="700" letter-spacing="1.7">BUILD</text>
+      <text x="882" y="460" fill="#f5f4f0" font-size="20" font-weight="650">Real controls · real states</text>
+      <path d="M1308 430h22m-8-8 8 8-8 8" fill="none" stroke="#929db1" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g>
+      <rect x="850" y="528" width="510" height="88" rx="17" fill="#d5f27b" fill-opacity=".10" stroke="#d5f27b" stroke-opacity=".48"/>
+      <circle cx="810" cy="572" r="19" fill="#172538" stroke="#68e4bf" stroke-width="2"/>
+      <text x="810" y="577" fill="#68e4bf" font-size="12" font-weight="750" text-anchor="middle">04</text>
+      <text x="882" y="564" fill="#8ee7be" font-size="11" font-weight="700" letter-spacing="1.7">CHECK</text>
+      <text x="882" y="592" fill="#f5f4f0" font-size="20" font-weight="650">Inspect · repair · report</text>
+      <path d="m1316 571 6 6 12-14" fill="none" stroke="#d5f27b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text x="850" y="661" fill="#a2aab9" font-size="13">One shared product model. Evidence from the interface that actually changed.</text>
+  </g>
+</svg>

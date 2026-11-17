@@ -1,0 +1,6 @@
+interface:
+  display_name: "Formsemble"
+  short_description: "Product-aware interface design, implementation, and review"
+  default_prompt: "Use $formsemble to understand this product, preserve its behavior, implement the requested interface work, and verify what the available tools can show."
+policy:
+  allow_implicit_invocation: true

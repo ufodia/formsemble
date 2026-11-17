@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "name": "formsemble",
+  "version": "1.2.0",
+  "files": [
+    {
+      "path": "INSTALL.md",
+      "sha256": "45f3447e107e3814b253ff53f5fcd7f9737cbf8f4ae58869c11285375470769d"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "89a2f3b84c4eb20cf64e5839939db661279fc3e998a1818dfa72576758001786"
+    },
+    {
+      "path": "README.md",
+      "sha256": "4a30231b6a45823b996998aefad28c9eeee4a046674f75e17b7284cc4540cc54"
+    },
+    {
+      "path": "assets/readme-hero.svg",
+      "sha256": "7c3458a0e2c81436605e441af8c87a8960369f66250df7b72692fa90c9f145fc"
+    },
+    {
+      "path": "docs/EVALUATION.md",
+      "sha256": "d35eb577ea2a3bf8f97b5fc608c0b4e7d66eff4c0a03f4d7293aaebec045c5a5"
+    },
+    {
+      "path": "docs/QUALITY.md",
+      "sha256": "c110d591b9237ad63f625ec6cc6bb339016f4bbd70bef767c9eb367e7d1c08ba"
+    },
+    {
+      "path": "docs/VALIDATION.md",
+      "sha256": "5b9bccfb06709e764281c6c37d76b12eb35e1a10b1479f3c61cea4e7cb2b8073"
+    },
+    {
+      "path": "examples/project-record.md",
+      "sha256": "68ff5586591d8d7628c6945945721505907c2c6e01873f22d2e5176688cf1fc0"
+    },
+    {
+      "path": "examples/prompts.md",
+      "sha256": "71e3de09d20eb38c6b039a67c156079d57f1b04aba8c1f1221e0e8f3e1144ab0"
+    },
+    {
+      "path": "skills/formsemble/LICENSE",
+      "sha256": "89a2f3b84c4eb20cf64e5839939db661279fc3e998a1818dfa72576758001786"
+    },
+    {
+      "path": "skills/formsemble/SKILL.md",
+      "sha256": "3f71ac7a9dab0bba5d095a9807b2b190c342ba1aa16dde51461da9d5d3e9ebf4"
+    },
+    {
+      "path": "skills/formsemble/agents/openai.yaml",
+      "sha256": "7fc2f2941bac20b88f9fa5eed8505578ff9262b82547ab00881201b44d5261f4"
+    },
+    {
+      "path": "skills/formsemble/assets/project-note-template.md",
+      "sha256": "aa5dcae406e3ff2386cd6b03b2566052714ef4ae67c005129150b69889835f34"
+    },
+    {
+      "path": "skills/formsemble/assets/review-template.json",
+      "sha256": "205347ff8d19bf155f148168662b756756c4bf362ef6698a6be85de97b1f5f0d"
+    },
+    {
+      "path": "skills/formsemble/references/art-direction.md",
+      "sha256": "5035e1199a6d2b3a12b435b75a8d2112cd83f77965f879f754ed900cd9464ac5"
+    },
+    {
+      "path": "skills/formsemble/references/implementation.md",
+      "sha256": "b5e734c1d6e24a5fa3df16acaa9ccdec9dcb1f4e581ddea5c600067271215bee"
+    },
+    {
+      "path": "skills/formsemble/references/portability.md",
+      "sha256": "e1d66f1c5be18e33e9c872355648c814b9c4e5db478904aed1e64c4d1e66165f"
+    },
+    {
+      "path": "skills/formsemble/references/product-model.md",
+      "sha256": "b091ad0cd1f44f7692702693039197fcfad5c1cc2bf325208dbecdba0a2a699f"
+    },
+    {
+      "path": "skills/formsemble/references/project-memory.md",
+      "sha256": "245cb1a08897112fbe6d5413c3d4a86a5bfaedb0536439e15dfd7fefd3013018"
+    },
+    {
+      "path": "skills/formsemble/references/review.md",
+      "sha256": "83ed7a39b710ae65625ebf9806d7d047a11521546ac46eac7a297ab2dc4818fe"
+    },
+    {
+      "path": "skills/formsemble/references/studio-roles.md",
+      "sha256": "3cd8af5a0772ecc606bb9ee896be637be75ed12eb2411c01a451f04ef309f176"
+    },
+    {
+      "path": "skills/formsemble/scripts/check_review.py",
+      "sha256": "e678d3091fc80eb55a313ece505901908832ce1947c9e9367c4af62d19b70612"
+    },
+    {
+      "path": "tests/test_check_review.py",
+      "sha256": "f1d910502c0376b42e82d6406d4e4656c2fe7adf6f51c9e818d06d5263f373d3"
+    },
+    {
+      "path": "tests/test_install_skill.py",
+      "sha256": "6113a0072a87f816b773314991eaf40b44c2415fa7c5546e858ff5549f5f6f1e"
+    },
+    {
+      "path": "tests/test_verify_package.py",
+      "sha256": "e8c81b3e42752056d80c675935a39ce75d1b9c7640461f368ce39ce165fe4c8a"
+    },
+    {
+      "path": "tests/test_windows_bundle.py",
+      "sha256": "50338c9276c6fb7d3fcd1d2c59f05f16bc47abd9383f9b1b26cb10ec2c2ba1e9"
+    },
+    {
+      "path": "tools/build_windows_bundle.py",
+      "sha256": "2f0bd9ce6d54ff24881430f7042f4b4191cdbe47e81dc81d416a800915d42eb3"
+    },
+    {
+      "path": "tools/install_skill.py",
+      "sha256": "df07af2c31e2f52a1423a9d297750d414704d73605684dd8d96ddfa9a47689d7"
+    },
+    {
+      "path": "tools/verify_package.py",
+      "sha256": "261389f68ea9531a119249675bb9693fbc8d4d9fb379ee492747d7989dffa138"
+    }
+  ]
+}
