@@ -18,7 +18,7 @@ Run a design studio organized around a shared understanding of the product and e
 
 ## 1. Choose the smallest useful studio
 
-Determine both the **scope** and the requested **deliverable**. Respect audit-only, direction-only, or implementation requests. An audit must not modify the product; a direction proposal must not claim working behavior; an implementation request must not end at a plan or representative demo.
+Determine both the **scope** and the requested **deliverable**. Keep the product read-only for audit-only requests. When the user also authorizes repairs, fix the in-scope findings and recheck the changed artifact. Label proposed behavior in direction work and complete the requested implementation scope.
 
 | Scope | Working method | Required result |
 |---|---|---|
@@ -52,7 +52,7 @@ Present the teach-back briefly and proceed. It is an alignment aid, not an appro
 
 For nontrivial work, read [studio responsibilities](references/studio-roles.md). Cover product/UX, art direction, content, implementation, and quality; combine responsibilities when efficient.
 
-If delegation is available and useful, parallelize independent analysis or review with a small number of agents. Give each the relevant artifacts, explicit scope, expected output, and file ownership. Keep one implementation owner per file. Reviewers should return concrete findings before seeing the lead's preferred verdict. Resolve conflicts using the product contract and evidence, not a vote or a fabricated consensus.
+When delegation is authorized and available, use a small number of agents for independent work that benefits from a separate pass. Give each the relevant artifacts, explicit scope, expected output, and file ownership. Keep one implementation owner per file. Ask reviewers for concrete findings before sharing the lead's preferred verdict. Resolve conflicts using the product contract and evidence.
 
 If delegation is unavailable, perform focused sequential passes yourself. Call them self-review; do not present them as independent minds. Never make parallel orchestration a prerequisite to helping the user.
 
@@ -86,15 +86,15 @@ Read [review and evidence](references/review.md) for Flow and Studio work or any
 
 Keep separate statuses for intent, task completion, visual craft, accessibility checks, responsiveness/content fit, and behavior preservation: **pass**, **fail**, **not tested**, or **not applicable with a reason**. "Tool unavailable" means not tested. Do not average failures into a favorable overall score.
 
-After two discretionary polish rounds, continue only to fix a concrete material defect or satisfy an explicit requirement. Do not end while a repairable in-scope blocker remains; if blocked, finish other work and identify the precise remaining limitation.
+Keep discretionary polish proportional to the requested outcome and any agreed limit. Finish repairable material defects within scope. If a repair is blocked, complete independent work and identify the remaining limitation.
 
-For multi-screen or handoff-heavy work with local evidence, use [the review record template](assets/review-template.json) and the read-only checker:
+When a durable record helps a handoff or protects against stale local evidence, use [the review record template](assets/review-template.json) and the read-only checker:
 
 ```text
-python3 <skill-directory>/scripts/check_review.py <report.json> --project-root <project-directory>
+python3 "<skill-directory>/scripts/check_review.py" "<report.json>" --project-root "<project-directory>"
 ```
 
-Resolve the actual skill directory; angle-bracket values are placeholders. The checker detects malformed records, missing or changed declared files, unsatisfied checks, and incompatible evidence methods. Its `complete` flag means all recorded checks are satisfied; it does not decide whether an audit or delivery task is finished. A complete audit may correctly document failures. The checker does not inspect images, prove that a review happened, certify accessibility, or judge design quality. Never fabricate evidence to satisfy it. If files or Python are unavailable, provide a concise evidence table and disclose the limitation.
+Resolve the actual skill directory and replace the angle-bracket placeholders. The checker detects malformed records, missing or changed declared files, unsatisfied checks, and incompatible evidence methods. Its `complete` flag requires a valid record, satisfied checks, and no open findings or deferred blocker or major findings. A finished audit may correctly document failures. The checker does not inspect images, prove that a review happened, certify accessibility, or judge design quality. Never fabricate evidence to satisfy it. If files or Python are unavailable, provide a concise evidence table and disclose the limitation.
 
 ## 7. Preserve decisions and deliver clearly
 

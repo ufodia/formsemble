@@ -334,6 +334,23 @@ class CheckReviewTests(unittest.TestCase):
                 report["artifact"]["files"][0]["path"] = relative
                 self.assert_invalid(report)
 
+    def test_nested_paths_use_forward_slashes_for_artifacts_and_evidence(self):
+        nested = self.root / "nested"
+        nested.mkdir()
+        (nested / "ui.html").write_bytes((self.root / "ui.html").read_bytes())
+        report = self.report()
+        reference = self.reference("nested/ui.html")
+        report["artifact"]["files"] = [reference]
+        self.assertTrue(self.checked(report)["valid"])
+        reference["path"] = r"nested\ui.html"
+        self.assert_invalid(report, "use forward slashes")
+
+        report = self.report()
+        report["checks"][0]["evidence"] = [self.reference("nested/ui.html", "notes")]
+        self.assertTrue(self.checked(report)["valid"])
+        report["checks"][0]["evidence"][0]["path"] = r"nested\ui.html"
+        self.assert_invalid(report, "use forward slashes")
+
     def test_in_root_symlink_is_resolved_and_still_hash_checked(self):
         self.make_link(self.root / "inside-link", self.root / "ui.html")
         report = self.report()
@@ -353,6 +370,13 @@ class CheckReviewTests(unittest.TestCase):
         self.assert_invalid(report, "duplicate id")
         report = self.report()
         report["artifact"]["files"].append(copy.deepcopy(report["artifact"]["files"][0]))
+        self.assert_invalid(report, "duplicate reviewed file")
+
+    def test_artifact_path_aliases_cannot_repeat_a_reviewed_file(self):
+        report = self.report()
+        report["artifact"]["files"] = [self.reference("./ui.html")]
+        self.assertTrue(self.checked(report)["valid"])
+        report["artifact"]["files"].append(self.reference("ui.html"))
         self.assert_invalid(report, "duplicate reviewed file")
 
     def test_required_fields_unknown_fields_and_types_are_strict(self):
@@ -464,6 +488,25 @@ class CheckReviewTests(unittest.TestCase):
         )
         self.assertEqual(completed.returncode, 0, completed.stderr)
         self.assertTrue(json.loads(completed.stdout)["complete"])
+
+    def test_actual_cli_returns_unicode_diagnostics_under_legacy_encoding(self):
+        report = self.report()
+        finding_id = "\u65e5\u672c"
+        report["findings"] = [{
+            "id": finding_id, "severity": "minor", "status": "open",
+            "description": "Synthetic Unicode diagnostic.", "evidence": [],
+        }]
+        self.report_path.write_text(json.dumps(report, ensure_ascii=False), encoding="utf-8")
+        completed = subprocess.run(
+            [sys.executable, str(CHECKER_PATH), str(self.report_path), "--project-root", str(self.root)],
+            cwd=str(self.base), capture_output=True, encoding="ascii", check=False,
+            env={**os.environ, "PYTHONIOENCODING": "cp1254"},
+        )
+        self.assertEqual(completed.returncode, 1)
+        self.assertEqual(completed.stderr, "")
+        result = json.loads(completed.stdout)
+        self.assertTrue(result["valid"])
+        self.assertEqual(result["blockers"], [f"Finding {finding_id}: minor / open"])
 
 
 if __name__ == "__main__":

@@ -4,6 +4,10 @@
   "version": "1.2.0",
   "files": [
     {
+      "path": ".gitattributes",
+      "sha256": "d60f352d0db1404c70afb4bb8b2ca3fd1c610572aa40720e8a0b7baa7885418c"
+    },
+    {
       "path": "INSTALL.md",
       "sha256": "45f3447e107e3814b253ff53f5fcd7f9737cbf8f4ae58869c11285375470769d"
     },
@@ -45,7 +49,7 @@
     },
     {
       "path": "skills/formsemble/SKILL.md",
-      "sha256": "3f71ac7a9dab0bba5d095a9807b2b190c342ba1aa16dde51461da9d5d3e9ebf4"
+      "sha256": "b3d8d6e2ead99942684ac6da7ebcfc48587c6ab7173ba0a38ffbd335187cd572"
     },
     {
       "path": "skills/formsemble/agents/openai.yaml",
@@ -81,7 +85,7 @@
     },
     {
       "path": "skills/formsemble/references/review.md",
-      "sha256": "83ed7a39b710ae65625ebf9806d7d047a11521546ac46eac7a297ab2dc4818fe"
+      "sha256": "9e2782bb16879bb8acc6bf858d8ee76ace17ebc6b95ee9d4c5c34c4360c4b514"
     },
     {
       "path": "skills/formsemble/references/studio-roles.md",
@@ -89,11 +93,11 @@
     },
     {
       "path": "skills/formsemble/scripts/check_review.py",
-      "sha256": "e678d3091fc80eb55a313ece505901908832ce1947c9e9367c4af62d19b70612"
+      "sha256": "ed7feee0851d8cddcb6b6b284fa06a9b0c0f28df273b32efcaeb910efd72bf41"
     },
     {
       "path": "tests/test_check_review.py",
-      "sha256": "f1d910502c0376b42e82d6406d4e4656c2fe7adf6f51c9e818d06d5263f373d3"
+      "sha256": "90434656be435d5b92999a959bcdf709896903953306bcaf8a75e061b16367a3"
     },
     {
       "path": "tests/test_install_skill.py",

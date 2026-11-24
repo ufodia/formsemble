@@ -12,7 +12,7 @@ import hashlib
 import json
 import re
 import sys
-from pathlib import Path, PureWindowsPath
+from pathlib import Path, PurePosixPath, PureWindowsPath
 
 
 DISCLAIMER = (
@@ -103,6 +103,9 @@ class ReviewChecker:
             return False
         if ".." in candidate.parts or ".." in windows.parts:
             self.error(location + ".path", "parent traversal is not allowed")
+            return False
+        if "\\" in raw:
+            self.error(location + ".path", "use forward slashes in relative paths")
             return False
         try:
             resolved = (self.root / candidate).resolve(strict=True)
@@ -209,9 +212,10 @@ class ReviewChecker:
             for index, entry in enumerate(files):
                 self.file(entry, f"artifact.files[{index}]")
                 if isinstance(entry, dict) and isinstance(entry.get("path"), str):
-                    if entry["path"] in seen_paths:
+                    portable_path = PurePosixPath(entry["path"])
+                    if portable_path in seen_paths:
                         self.error(f"artifact.files[{index}].path", "duplicate reviewed file")
-                    seen_paths.add(entry["path"])
+                    seen_paths.add(portable_path)
         seen_checks = set()
         for index, entry in enumerate(self.items(report.get("checks"), "checks")):
             self.check(entry, f"checks[{index}]", seen_checks)
@@ -248,7 +252,8 @@ def main(argv=None):
     except (OSError, ValueError, RuntimeError) as exc:
         checker.error("report", str(exc))
     result = checker.result()
-    print(json.dumps(result, indent=2, ensure_ascii=False))
+    # Keep the JSON readable by consumers even on a legacy console encoding.
+    print(json.dumps(result, indent=2))
     return 2 if not result["valid"] else (0 if result["complete"] else 1)
 
 
