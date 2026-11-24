@@ -103,6 +103,8 @@ py -3 -B -m unittest discover -s tests -v
 
 On macOS or Linux, use python3 -B with the same script paths. The verifier checks the release inventory and SHA-256 fingerprints. The standard-library test suite exercises the optional evidence checker, local installer, package verifier, and offline Windows bundle generator. Tests do not benchmark model design quality or prove that a documented observation actually occurred.
 
+For a Windows clone created before the repository pinned LF line endings, use a fresh checkout when verifying the package. A Git pull can leave unchanged files with their previous CRLF line endings.
+
 For a review record created during product work, the optional read-only checker can verify file fingerprints and declared evidence consistency:
 
 ~~~bash
