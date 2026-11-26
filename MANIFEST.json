@@ -29,11 +29,11 @@
     },
     {
       "path": "docs/QUALITY.md",
-      "sha256": "c110d591b9237ad63f625ec6cc6bb339016f4bbd70bef767c9eb367e7d1c08ba"
+      "sha256": "3a7685014774e2e4b7f15c5b3a602e1635228478aa68fa1df4f117847c466b4f"
     },
     {
       "path": "docs/VALIDATION.md",
-      "sha256": "5b9bccfb06709e764281c6c37d76b12eb35e1a10b1479f3c61cea4e7cb2b8073"
+      "sha256": "65b9af36b3691299b7770447f370e82e9caa06c353b1b473cf814ab486fc3331"
     },
     {
       "path": "examples/project-record.md",
@@ -41,7 +41,7 @@
     },
     {
       "path": "examples/prompts.md",
-      "sha256": "71e3de09d20eb38c6b039a67c156079d57f1b04aba8c1f1221e0e8f3e1144ab0"
+      "sha256": "891843a793747c67e820235219fc6eaf776e04711e1493715397830085299ff3"
     },
     {
       "path": "skills/formsemble/LICENSE",
@@ -49,7 +49,7 @@
     },
     {
       "path": "skills/formsemble/SKILL.md",
-      "sha256": "b3d8d6e2ead99942684ac6da7ebcfc48587c6ab7173ba0a38ffbd335187cd572"
+      "sha256": "9aebe595c09ffa9fbe0776c0ab68ff373d1a430a14af517d04bfec22181494e3"
     },
     {
       "path": "skills/formsemble/agents/openai.yaml",
@@ -85,7 +85,7 @@
     },
     {
       "path": "skills/formsemble/references/review.md",
-      "sha256": "9e2782bb16879bb8acc6bf858d8ee76ace17ebc6b95ee9d4c5c34c4360c4b514"
+      "sha256": "73f54fb74d3df443153ce78e6aca7cc79e0ed5f6b4c436c9715b72705ece0595"
     },
     {
       "path": "skills/formsemble/references/studio-roles.md",
@@ -93,11 +93,11 @@
     },
     {
       "path": "skills/formsemble/scripts/check_review.py",
-      "sha256": "ed7feee0851d8cddcb6b6b284fa06a9b0c0f28df273b32efcaeb910efd72bf41"
+      "sha256": "07f6b1576a48398936567e672df2c54f3e3e6d7bed6de1dd36b93754f0c5fecc"
     },
     {
       "path": "tests/test_check_review.py",
-      "sha256": "90434656be435d5b92999a959bcdf709896903953306bcaf8a75e061b16367a3"
+      "sha256": "b71d4da110b2d2bf20c14d5105e7eebc535680105ff99202f65e56b35b2d5e54"
     },
     {
       "path": "tests/test_install_skill.py",

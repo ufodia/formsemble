@@ -1,5 +1,13 @@
 # Validation scope
 
+## Patch and handoff smoke check, 2026-11-26
+
+A synthetic Turkish appointment form reproduced a clipped submit label at 320 CSS px in local Chrome 158 on Windows. After a CSS-only change, the label fit at 320 and 880 CSS px. Tab reached the existing submit button. Pressing Enter with an invalid appointment code showed feedback and kept the entered text. Clicking submit with the corrected code showed confirmation through the existing handler.
+
+The fingerprint command captured the form, a screenshot, and runtime notes. The resulting handoff validated as incomplete with visual inspection marked `not_tested`. The checker rejected the same handoff after the form file changed. Screen-reader behavior and visual craft were outside this smoke check.
+
+The generated offline Windows installer extracted 30 files, all verified against the package manifest. The installer copied the 13-file skill into an isolated test project's Codex and Claude folders with matching file bytes in both.
+
 ## Version 1.2.0 workspace verification
 
 Prepared on 2026-11-17 in the Windows workspace.

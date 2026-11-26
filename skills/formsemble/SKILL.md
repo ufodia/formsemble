@@ -22,11 +22,13 @@ Determine both the **scope** and the requested **deliverable**. Keep the product
 
 | Scope | Working method | Required result |
 |---|---|---|
-| Patch: a bounded UI defect or copy/layout correction | Inspect the affected area; describe the intended change briefly; implement; check it and nearby behavior | Focused fix and honest verification; no new design manual, visual alternatives, or mandatory agents |
+| Patch for a bounded UI defect or copy/layout correction | Trace the affected control and state. Make the authorized fix, then exercise the reported condition and the behavior most exposed to the edit. | Focused change and a brief verification readout |
 | Flow: one screen, component family, or journey | Refresh the relevant product understanding; make screen commitments; build; use focused review | Complete requested surface and its relevant states |
 | Studio: new product, major redesign, or cross-screen system | Reconstruct the product; explore meaningful directions; finish a representative slice; extend and review | Coherent requested scope, working interactions where required, durable decisions, evidence |
 
-For audits, use the relevant scope's understanding and review steps, then deliver prioritized findings. For concept work, label assumptions and future behavior; render the proposal when tools allow. Do not manufacture a pass for implementation checks that cannot yet apply.
+For a Patch, use the table as the whole workflow. Read deeper sections only for a specific risk or a requested review artifact. For example, check a clipped label under the reported width and content, then activate its existing control once to confirm the outcome.
+
+For audits, inspect the applicable scope and deliver prioritized findings. For concept work, label assumptions and proposed behavior, and render the proposal when tools allow. Mark implementation checks that remain untested.
 
 Detect available file, rendering, browser, image, implementation, and delegation capabilities. Use actual tool interfaces; never assume a browser, Figma access, an image generator, or subagents exist. After a capability fails, retry only when a concrete new diagnostic supports a different outcome; otherwise continue available work and mark the missing check. See [portability](references/portability.md) when host capabilities affect execution.
 
@@ -76,7 +78,7 @@ Resolve material findings in the representative slice, then extend the agreed gr
 
 ## 6. Inspect, challenge, and repair
 
-Read [review and evidence](references/review.md) for Flow and Studio work or any verification claim.
+Read [review and evidence](references/review.md) for Flow and Studio work. Use the checks relevant to the changed risk for a Patch.
 
 1. Inspect rendered output at the relevant sizes and states using available visual tools. Source code and a successful build do not establish appearance.
 2. Exercise the primary action and its important recovery path when implementation is in scope. A screenshot does not establish functionality.
@@ -88,13 +90,13 @@ Keep separate statuses for intent, task completion, visual craft, accessibility 
 
 Keep discretionary polish proportional to the requested outcome and any agreed limit. Finish repairable material defects within scope. If a repair is blocked, complete independent work and identify the remaining limitation.
 
-When a durable record helps a handoff or protects against stale local evidence, use [the review record template](assets/review-template.json) and the read-only checker:
+When a durable record helps a handoff or protects against stale local evidence, use [the review record template](assets/review-template.json). The [checker guide](references/review.md#use-the-optional-checker) shows how to capture file fingerprints and validate the completed record.
 
 ```text
 python3 "<skill-directory>/scripts/check_review.py" "<report.json>" --project-root "<project-directory>"
 ```
 
-Resolve the actual skill directory and replace the angle-bracket placeholders. The checker detects malformed records, missing or changed declared files, unsatisfied checks, and incompatible evidence methods. Its `complete` flag requires a valid record, satisfied checks, and no open findings or deferred blocker or major findings. A finished audit may correctly document failures. The checker does not inspect images, prove that a review happened, certify accessibility, or judge design quality. Never fabricate evidence to satisfy it. If files or Python are unavailable, provide a concise evidence table and disclose the limitation.
+Resolve the actual skill directory and replace the angle-bracket placeholders. Read `valid` for record and file consistency and `complete` for satisfied checks and findings. A finished audit can document unresolved issues. If files or Python are unavailable, use a concise evidence table and disclose the limitation.
 
 ## 7. Preserve decisions and deliver clearly
 

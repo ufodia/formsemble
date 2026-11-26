@@ -46,7 +46,7 @@ The checker reads only declared local paths. It cannot detect an omitted depende
 
 Every material finding needs an affected location/state, an observation, a user consequence, evidence, severity, a bounded repair, and a recheck condition. In JSON records, put those details inside `description`; unknown extra keys are rejected.
 
-Resolve in-scope blockers and major defects. Use discretion for optional polish. After two discretionary polish rounds, continue only for a concrete material defect or explicit requirement. When a capability is unavailable, complete useful work and disclose the remaining check rather than inventing a result.
+Resolve in-scope blockers and major defects. Keep optional polish proportional to the requested outcome. When a capability is unavailable, complete useful work and disclose the remaining check.
 
 ## Distinctiveness and limits
 

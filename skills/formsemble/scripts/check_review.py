@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Check a Formsemble review record, its file hashes, and declared completeness.
+"""Check a Formsemble review record or capture explicit file fingerprints.
 
-Read-only, Python standard library only. Exit 0: valid record, checks satisfied;
-1: valid record, unsatisfied checks/findings; 2: invalid, missing, or stale record.
-The 'complete' flag concerns recorded checks, not completion of an audit task.
-This does not evaluate design quality or prove that a reviewer did the work.
+Read-only, Python standard library only. Exit 0 means the capture succeeded or
+the review checks and findings are satisfied. Exit 1 means a valid review has
+outstanding checks or findings. Exit 2 means invalid input or stale files.
+Review completeness covers the recorded checks and findings. Design quality and
+the reviewer's work require separate evidence.
 """
 
 import argparse
@@ -96,37 +97,61 @@ class ReviewChecker:
             self.string(value.get("description"), location + ".description", True)
         if not raw:
             return False
+        actual_digest = self.fingerprint(raw, location + ".path")
+        if actual_digest is None:
+            return False
+        if actual_digest != digest.lower():
+            self.error(location + ".sha256", "does not match current file bytes")
+        return kind == "image" and PurePosixPath(raw).suffix.lower() in IMAGE_SUFFIXES
+
+    def fingerprint(self, raw, location):
+        if not raw.strip():
+            self.error(location, "must not be blank")
+            return None
         candidate = Path(raw)
         windows = PureWindowsPath(raw)
         if candidate.is_absolute() or windows.drive or windows.root:
-            self.error(location + ".path", "must be relative to project root")
-            return False
+            self.error(location, "must be relative to project root")
+            return None
         if ".." in candidate.parts or ".." in windows.parts:
-            self.error(location + ".path", "parent traversal is not allowed")
-            return False
+            self.error(location, "parent traversal is not allowed")
+            return None
         if "\\" in raw:
-            self.error(location + ".path", "use forward slashes in relative paths")
-            return False
+            self.error(location, "use forward slashes in relative paths")
+            return None
         try:
             resolved = (self.root / candidate).resolve(strict=True)
             try:
                 resolved.relative_to(self.root)
             except ValueError:
-                self.error(location + ".path", "resolves outside project root")
-                return False
+                self.error(location, "resolves outside project root")
+                return None
             if not resolved.is_file() or resolved.stat().st_size == 0:
-                self.error(location + ".path", "must be a nonempty regular file")
-                return False
+                self.error(location, "must be a nonempty regular file")
+                return None
             hasher = hashlib.sha256()
             with resolved.open("rb") as stream:
                 for block in iter(lambda: stream.read(1024 * 1024), b""):
                     hasher.update(block)
-            if hasher.hexdigest() != digest.lower():
-                self.error(location + ".sha256", "does not match current file bytes")
+            return hasher.hexdigest()
         except (OSError, ValueError, RuntimeError) as exc:
-            self.error(location + ".path", "cannot read file (" + str(exc) + ")")
-            return False
-        return kind == "image" and candidate.suffix.lower() in IMAGE_SUFFIXES
+            self.error(location, "cannot read file (" + str(exc) + ")")
+            return None
+
+    def capture_files(self, paths):
+        files = []
+        seen = set()
+        for index, raw in enumerate(paths):
+            location = f"paths[{index}]"
+            path = PurePosixPath(raw).as_posix()
+            if path in seen:
+                self.error(location, "duplicate selected file: " + path)
+                continue
+            seen.add(path)
+            digest = self.fingerprint(raw, location)
+            if digest is not None:
+                files.append({"path": path, "sha256": digest})
+        return files
 
     def evidence(self, value, location):
         entries = self.items(value, location)
@@ -238,23 +263,36 @@ class ReviewChecker:
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("report", type=Path, help="JSON review report")
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument("report", nargs="?", type=Path, help="validate a JSON review report")
+    mode.add_argument("--fingerprint", action="append", metavar="PATH",
+                      help="capture one project-relative file as JSON (repeat for more files)")
     parser.add_argument("--project-root", required=True, type=Path, help="Root for every recorded file path")
     args = parser.parse_args(argv)
     checker = ReviewChecker(args.project_root)
+    files = []
     try:
         checker.root = args.project_root.resolve(strict=True)
         if not checker.root.is_dir():
             raise ValueError("project root must be a directory")
-        with args.report.open("r", encoding="utf-8-sig") as stream:
-            report = json.load(stream, object_pairs_hook=unique_object, parse_constant=reject_constant)
-        checker.review(report)
+        if args.fingerprint is not None:
+            files = checker.capture_files(args.fingerprint)
+        else:
+            with args.report.open("r", encoding="utf-8-sig") as stream:
+                report = json.load(stream, object_pairs_hook=unique_object, parse_constant=reject_constant)
+            checker.review(report)
     except (OSError, ValueError, RuntimeError) as exc:
-        checker.error("report", str(exc))
-    result = checker.result()
+        checker.error("report" if args.fingerprint is None else "project root", str(exc))
+    if args.fingerprint is not None:
+        valid = not checker.errors
+        result = {"valid": valid, "files": files if valid else [], "errors": checker.errors}
+        exit_code = 0 if valid else 2
+    else:
+        result = checker.result()
+        exit_code = 2 if not result["valid"] else (0 if result["complete"] else 1)
     # Keep the JSON readable by consumers even on a legacy console encoding.
     print(json.dumps(result, indent=2))
-    return 2 if not result["valid"] else (0 if result["complete"] else 1)
+    return exit_code
 
 
 if __name__ == "__main__":

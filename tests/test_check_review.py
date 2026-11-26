@@ -107,6 +107,15 @@ class CheckReviewTests(unittest.TestCase):
             code = review_checker.main([str(self.report_path), "--project-root", str(root or self.root)])
         return code, json.loads(output.getvalue())
 
+    def capture(self, *paths, root=None):
+        args = ["--project-root", str(root or self.root)]
+        for path in paths:
+            args.extend(["--fingerprint", path])
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
+            code = review_checker.main(args)
+        return code, json.loads(output.getvalue())
+
     def assert_invalid(self, report, message=None):
         result = self.checked(report)
         self.assertFalse(result["valid"])
@@ -132,6 +141,56 @@ class CheckReviewTests(unittest.TestCase):
         self.assertIn("consistency only", result["disclaimer"])
         self.assertIn("does not evaluate design quality", result["disclaimer"])
         self.assertIn("prove a review occurred", result["disclaimer"])
+
+    def test_captured_files_are_copy_ready_and_later_changes_still_fail_validation(self):
+        capture_path = self.root / "review captures"
+        capture_path.mkdir()
+        evidence_path = capture_path / "narrow layout.png"
+        evidence_path.write_bytes((self.root / "fixture.png").read_bytes())
+        before = evidence_path.read_bytes()
+
+        code, captured = self.capture("./ui.html", "review captures/narrow layout.png")
+        self.assertEqual(code, 0)
+        expected_files = [self.reference("ui.html"), self.reference("review captures/narrow layout.png")]
+        self.assertEqual(captured, {"valid": True, "files": expected_files, "errors": []})
+        self.assertFalse(self.report_path.exists())
+        self.assertEqual(evidence_path.read_bytes(), before)
+
+        report = self.report()
+        report["artifact"]["files"] = [captured["files"][0]]
+        self.check_by_id(report, "visual")["evidence"] = [
+            {**captured["files"][1], "kind": "image", "description": "Synthetic visual artifact."}
+        ]
+        self.assertEqual(self.run_cli(report)[0], 0)
+        evidence_path.write_bytes(before + b"changed")
+        code, result = self.run_cli()
+        self.assertEqual(code, 2)
+        self.assertIn("does not match current file bytes", "\n".join(result["errors"]))
+
+    def test_invalid_capture_never_returns_partial_file_pairs(self):
+        for path, error in (
+            ("../outside.txt", "parent traversal"),
+            (str(self.root / "ui.html"), "relative to project root"),
+            (r"nested\notes.txt", "forward slashes"),
+            ("missing.txt", "cannot read file"),
+            ("./ui.html", "duplicate selected file"),
+            (".", "nonempty regular file"),
+        ):
+            with self.subTest(path=path):
+                code, captured = self.capture("ui.html", path)
+                self.assertEqual(code, 2)
+                self.assertFalse(captured["valid"])
+                self.assertEqual(captured["files"], [])
+                self.assertIn(error, "\n".join(captured["errors"]))
+
+    def test_capture_works_from_outside_project_root(self):
+        completed = subprocess.run(
+            [sys.executable, str(CHECKER_PATH), "--project-root", str(self.root),
+             "--fingerprint", "ui.html"],
+            cwd=str(self.base), capture_output=True, encoding="ascii", check=False,
+        )
+        self.assertEqual(completed.returncode, 0, completed.stderr)
+        self.assertEqual(json.loads(completed.stdout)["files"], [self.reference("ui.html")])
 
     def test_fail_and_not_tested_are_valid_but_incomplete_with_exit_one(self):
         for status in ("fail", "not_tested"):

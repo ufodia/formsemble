@@ -26,6 +26,12 @@ Use Formsemble to create a distinctive visual direction for this product. Work f
 Use Formsemble to audit these screens. Do not change files. Prioritize findings by their effect on the main task. For each material issue, identify the location, observation, evidence, consequence, correction, and recheck condition. Separate source findings from rendered or runtime observations.
 ```
 
+## Hand off a repaired flow
+
+```text
+Use Formsemble to hand off the repaired appointment request form. Link the current narrow-width capture and runtime notes for the rejected submission, retained field values, and successful retry. Record which files and states the next reviewer should recheck if shared styles change. Keep untested assistive-technology behavior visible.
+```
+
 ## Correct a misunderstood product
 
 ```text
